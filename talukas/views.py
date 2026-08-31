@@ -12,9 +12,13 @@ from talukas.serializers import TalukaSerializer
 
 
 def scoped_talukas(user):
-    qs = Taluka.objects.all().annotate(
-        user_count=Count("users", distinct=True),
-        record_count=Count("records", distinct=True),
+    qs = (
+        Taluka.objects.all()
+        .order_by("name")
+        .annotate(
+            user_count=Count("users", distinct=True),
+            record_count=Count("records", distinct=True),
+        )
     )
     if user.is_super_admin:
         return qs

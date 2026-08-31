@@ -8,7 +8,10 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
-SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-change-me")
+SECRET_KEY = os.getenv(
+    "SECRET_KEY",
+    "django-secure-dev-key-change-me-before-production-2025-nanded-taluka-backend",
+)
 DEBUG = os.getenv("DEBUG", "True").lower() in {"1", "true", "yes"}
 ALLOWED_HOSTS = [
     host.strip()
